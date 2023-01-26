@@ -46,14 +46,16 @@ public class Matriz {
                 case "Uniforme":
 
                     try {
-                        if (comprobarPosition(x - 2, y)) {
-                            if (comprobarPosition(x + 2, y)) {
-                                if (comprobarPosition(x + 1, y + 1)) {
-                                    if (comprobarPosition(x, y + 1)) {
-                                        if (comprobarPosition(x - 1, y + 1)) {
-                                            if (comprobarPosition(x + 1, y - 1)) {
-                                                if (comprobarPosition(x, y - 1)) {
-                                                    if (comprobarPosition(x - 1, y - 1)) {
+                    if (comprobarPosition(x - 2, y)) {
+                        if (comprobarPosition(x + 2, y)) {
+                            if (comprobarPosition(x + 1, y + 1)) {
+                                if (comprobarPosition(x, y + 1)) {
+                                    if (comprobarPosition(x - 1, y + 1)) {
+                                        if (comprobarPosition(x + 1, y - 1)) {
+                                            if (comprobarPosition(x, y - 1)) {
+                                                if (comprobarPosition(x - 1, y - 1)) {
+                                                    if (tablero[x][y].equalsIgnoreCase("X") && tablero[x + 1][y].equalsIgnoreCase("X")
+                                                            && tablero[x - 1][y].equalsIgnoreCase("X")) {
                                                         Posicion p = new Posicion(x, y);
                                                         Posicion p2 = new Posicion(x + 1, y);
                                                         Posicion p3 = new Posicion(x - 1, y);
@@ -61,14 +63,11 @@ public class Matriz {
                                                         herramienta.posicionHerramienta.add(p2);
                                                         herramienta.posicionHerramienta.add(p3);
                                                         this.herramientas.add(herramienta);
-                                                        if (tablero[x][y].equalsIgnoreCase("X")&&tablero[x+1][y].equalsIgnoreCase("X")
-                                                            &&tablero[x-1][y].equalsIgnoreCase("X")) {
-                                                            tablero[x][y] = "U";
-                                                            tablero[x + 1][y] = "U";
-                                                            tablero[x - 1][y] = "U";
-                                                            comprobar = true;
-                                                        }else {
-                                                        }
+                                                        tablero[x][y] = "U";
+                                                        tablero[x + 1][y] = "U";
+                                                        tablero[x - 1][y] = "U";
+                                                        comprobar = true;
+                                                    } else {
                                                     }
                                                 }
                                             }
@@ -76,11 +75,12 @@ public class Matriz {
                                     }
                                 }
                             }
-
                         }
-                    } catch (ArrayIndexOutOfBoundsException n) {
+
                     }
-                    break;
+                } catch (ArrayIndexOutOfBoundsException n) {
+                }
+                break;
 
                 case "Alicates":
                     // Como ocupa 2 debemos decidir que dos casillas
@@ -185,25 +185,25 @@ public class Matriz {
 
                 case "Pasaporte":
                     try {
-                        if (comprobarPosition(x, y)) {
-                            if (comprobarPosition(x - 1, y)) {
-                                if (comprobarPosition(x + 1, y)) {
-                                    if (comprobarPosition(x, y + 1)) {
-                                        if (comprobarPosition(x, y - 1)) {
-                                            tablero[x][y] = "P";
-                                            Posicion p = new Posicion(x, y);
-                                            herramienta.posicionHerramienta.add(p);
-                                            this.herramientas.add(herramienta);
-                                            comprobar = true;
-                                        }
+                    if (comprobarPosition(x, y)) {
+                        if (comprobarPosition(x - 1, y)) {
+                            if (comprobarPosition(x + 1, y)) {
+                                if (comprobarPosition(x, y + 1)) {
+                                    if (comprobarPosition(x, y - 1)) {
+                                        tablero[x][y] = "P";
+                                        Posicion p = new Posicion(x, y);
+                                        herramienta.posicionHerramienta.add(p);
+                                        this.herramientas.add(herramienta);
+                                        comprobar = true;
                                     }
                                 }
                             }
                         }
-                    } catch (ArrayIndexOutOfBoundsException a) {
-
                     }
-                    break;
+                } catch (ArrayIndexOutOfBoundsException a) {
+
+                }
+                break;
 
             }
         }
