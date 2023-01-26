@@ -9,7 +9,7 @@ public class Personaje {
     boolean pasaporte;
     boolean alicates;
     boolean uniforme;
-    String[] herramientas = {"P", "A", "U"};
+    int contador;
     Scanner teclado = new Scanner(System.in);
 
     public Personaje(Posicion pos) {
@@ -17,6 +17,7 @@ public class Personaje {
         this.pasaporte = false;
         this.uniforme = false;
         this.posicion = pos;
+        this.contador=0;
     }
 
     public void mover(String direccion, Matriz tabla) {
@@ -26,19 +27,23 @@ public class Personaje {
                 case "W":
                     //swith COmprobacion // MOVER ARRIBA
                     movUp(tabla);
+                    this.contador++;
                     break;
 
                 case "A":
                     //MOVIMIENTO IZQUIERDA
                     moveLeft(tabla);
+                    this.contador++;
                     break;
                 case "S":
                     //MOVIMIENTO ABAJO
                     movDown(tabla);
+                    this.contador++;
                     break;
 
                 case "D"://derecha
                     movRight(tabla);
+                    this.contador++;
                     break;
                 default:
                     System.out.println("Por favor inserta una de las letras de la Cruceta de direccion");

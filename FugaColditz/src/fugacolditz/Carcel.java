@@ -37,24 +37,22 @@ public class Carcel {
         }
         tablero.AniadirPersonaje();
         System.out.println(tablero.imprimirTablero());
-        int contador = 0;
         do {
             System.out.println("A que posicion quieres moverte?(W,A,S,D): ");
             String mov = sc.next();
             tablero.personaje1.mover(mov, tablero);
             if (opcion.equalsIgnoreCase("facil")) {
-                tablero.moverG(tablero, guardia1);
+                guardia1.moverG(tablero, guardia1);
 
             } else if (opcion.equalsIgnoreCase("medio")) {
-                tablero.moverG(tablero, guardia1);
-                tablero.moverG(tablero, guardia2);
+                guardia1.moverG(tablero, guardia1);
+                guardia2.moverG(tablero, guardia2);
             } else {
-                tablero.moverG(tablero, guardia1);
-                tablero.moverG(tablero, guardia2);
-                tablero.moverG(tablero, guardia3);
+                guardia1.moverG(tablero, guardia1);
+                guardia2.moverG(tablero, guardia2);
+                guardia3.moverG(tablero, guardia3);
             }
             System.out.println(tablero.imprimirTablero());
-            contador++;
             if (tablero.personaje1.alicates && tablero.personaje1.pasaporte && tablero.personaje1.uniforme) {
                 System.out.println("HAS GANADO!!!!");
                 System.exit(0);
@@ -64,7 +62,7 @@ public class Carcel {
                     || (tablero.personaje1.posicion.x == guardia3.x) && (tablero.personaje1.posicion.y == guardia3.y)) {
                 tablero.perder = true;
             }
-        } while ((!tablero.EndGame()) && (contador != 30));
+        } while ((!tablero.EndGame()) && (tablero.personaje1.contador != 30));
         System.out.println("END GAME!");
         System.exit(0);
     }
