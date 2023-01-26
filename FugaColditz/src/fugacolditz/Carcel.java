@@ -16,53 +16,49 @@ public class Carcel {
 
 
         //INICIALIZAMOS EL TABLERO
-        Matriz tablero = new Matriz();
+//        Matriz tablero = new Matriz();
 
         Herramienta pasaporte = new Herramienta("Pasaporte");
-        tablero.AniadirHerramienta(pasaporte);
+        guardia1.m.AniadirHerramienta(pasaporte);
         Herramienta alicates = new Herramienta("Alicates");
-        tablero.AniadirHerramienta(alicates);
+        guardia1.m.AniadirHerramienta(alicates);
         Herramienta uniforme = new Herramienta("Uniforme");
-        tablero.AniadirHerramienta(uniforme);
+        guardia1.m.AniadirHerramienta(uniforme);
         if (opcion.equalsIgnoreCase("facil")) {
-            tablero.aniadirGuardia(guardia1);
+            guardia1.m.aniadirGuardia(guardia1);
+            Thread guardia11 = new Thread(guardia1);
+            guardia11.start();
 
         } else if (opcion.equalsIgnoreCase("medio")) {
-            tablero.aniadirGuardia(guardia1);
-            tablero.aniadirGuardia(guardia2);
+            guardia1.m.aniadirGuardia(guardia1);
+            guardia1.m.aniadirGuardia(guardia2);
+            guardia1.start();
+            guardia2.start();
         } else {
-            tablero.aniadirGuardia(guardia1);
-            tablero.aniadirGuardia(guardia2);
-            tablero.aniadirGuardia(guardia3);
+            guardia1.m.aniadirGuardia(guardia1);
+            guardia1.m.aniadirGuardia(guardia2);
+            guardia1.m.aniadirGuardia(guardia3);
+            guardia1.start();
+            guardia2.start();
+            guardia3.start();
         }
-        tablero.AniadirPersonaje();
-        System.out.println(tablero.imprimirTablero());
+        guardia1.m.AniadirPersonaje();
+        System.out.println(guardia1.m.imprimirTablero());
         do {
             System.out.println("A que posicion quieres moverte?(W,A,S,D): ");
             String mov = sc.next();
-            tablero.personaje1.mover(mov, tablero);
-            if (opcion.equalsIgnoreCase("facil")) {
-                guardia1.moverG(tablero, guardia1);
-
-            } else if (opcion.equalsIgnoreCase("medio")) {
-                guardia1.moverG(tablero, guardia1);
-                guardia2.moverG(tablero, guardia2);
-            } else {
-                guardia1.moverG(tablero, guardia1);
-                guardia2.moverG(tablero, guardia2);
-                guardia3.moverG(tablero, guardia3);
-            }
-            System.out.println(tablero.imprimirTablero());
-            if (tablero.personaje1.alicates && tablero.personaje1.pasaporte && tablero.personaje1.uniforme) {
+            guardia1.m.personaje1.mover(mov, guardia1.m);
+            System.out.println(guardia1.m.imprimirTablero());
+            if (guardia1.m.personaje1.alicates && guardia1.m.personaje1.pasaporte && guardia1.m.personaje1.uniforme) {
                 System.out.println("HAS GANADO!!!!");
                 System.exit(0);
             }
-            if ((tablero.personaje1.posicion.x == guardia1.x) && (tablero.personaje1.posicion.y == guardia1.y)
-                    || (tablero.personaje1.posicion.x == guardia2.x) && (tablero.personaje1.posicion.y == guardia2.y)
-                    || (tablero.personaje1.posicion.x == guardia3.x) && (tablero.personaje1.posicion.y == guardia3.y)) {
-                tablero.perder = true;
+            if ((guardia1.m.personaje1.posicion.x == guardia1.x) && (guardia1.m.personaje1.posicion.y == guardia1.y)
+                    || (guardia1.m.personaje1.posicion.x == guardia2.x) && (guardia1.m.personaje1.posicion.y == guardia2.y)
+                    || (guardia1.m.personaje1.posicion.x == guardia3.x) && (guardia1.m.personaje1.posicion.y == guardia3.y)) {
+                guardia1.m.perder = true;
             }
-        } while ((!tablero.EndGame()) && (tablero.personaje1.contador != 30));
+        } while ((!guardia1.m.EndGame()) && (guardia1.m.personaje1.contador != 30));
         System.out.println("END GAME!");
         System.exit(0);
     }

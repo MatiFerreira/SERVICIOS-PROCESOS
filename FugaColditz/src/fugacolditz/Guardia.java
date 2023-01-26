@@ -1,13 +1,34 @@
 package fugacolditz;
 
-public class Guardia {
+import java.util.concurrent.Semaphore;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class Guardia extends Thread {
+
     int x;
     int y;
+    Semaphore semaforog = new Semaphore(0);
+    Matriz m = new Matriz();
+
     public Guardia(int x, int y) {
         this.x = x;
         this.y = y;
     }
-    
+
+    @Override
+    public void run() {
+        try {
+            System.out.println("ola");
+            semaforog.acquire();
+            this.moverG(m, this);
+            
+            semaforog.release();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Guardia.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public void moverG(Matriz matriz, Guardia g) {
         try {
             int ale = (int) ((Math.random() * 4 + 1));
