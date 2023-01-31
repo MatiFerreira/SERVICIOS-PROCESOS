@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Barberia-SEMAFORO/Barberia-SEMAFORO.iml" filepath="$PROJECT_DIR$/Barberia-SEMAFORO/Barberia-SEMAFORO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FugaColditz/FugaColditz.iml" filepath="$PROJECT_DIR$/FugaColditz/FugaColditz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SERVICIOS-PROCESOS.iml" filepath="$PROJECT_DIR$/SERVICIOS-PROCESOS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/THREADS/THREADS.iml" filepath="$PROJECT_DIR$/THREADS/THREADS.iml" />
+    </modules>
+  </component>
+</project>

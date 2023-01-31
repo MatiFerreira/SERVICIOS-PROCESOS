@@ -1,6 +1,8 @@
 package fugacolditz;
 
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Carcel {
 
@@ -26,9 +28,7 @@ public class Carcel {
         guardia1.m.AniadirHerramienta(uniforme);
         if (opcion.equalsIgnoreCase("facil")) {
             guardia1.m.aniadirGuardia(guardia1);
-            Thread guardia11 = new Thread(guardia1);
-            guardia11.start();
-
+            guardia1.start();
         } else if (opcion.equalsIgnoreCase("medio")) {
             guardia1.m.aniadirGuardia(guardia1);
             guardia1.m.aniadirGuardia(guardia2);
@@ -45,9 +45,11 @@ public class Carcel {
         guardia1.m.AniadirPersonaje();
         System.out.println(guardia1.m.imprimirTablero());
         do {
+
             System.out.println("A que posicion quieres moverte?(W,A,S,D): ");
             String mov = sc.next();
             guardia1.m.personaje1.mover(mov, guardia1.m);
+
             System.out.println(guardia1.m.imprimirTablero());
             if (guardia1.m.personaje1.alicates && guardia1.m.personaje1.pasaporte && guardia1.m.personaje1.uniforme) {
                 System.out.println("HAS GANADO!!!!");

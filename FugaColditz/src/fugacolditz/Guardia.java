@@ -8,25 +8,29 @@ public class Guardia extends Thread {
 
     int x;
     int y;
-    Semaphore semaforog = new Semaphore(0);
+    Semaphore semaforog;
     Matriz m = new Matriz();
 
     public Guardia(int x, int y) {
         this.x = x;
         this.y = y;
+        this.semaforog = new Semaphore(1);
     }
 
     @Override
     public void run() {
         try {
-            System.out.println("ola");
-            semaforog.acquire();
-            this.moverG(m, this);
-            
-            semaforog.release();
+            while (!m.perder) {
+                //System.out.println("ola");
+                this.moverG(m, this);
+                this.semaforog.acquire(1);
+                semaforog.release();
+                sleep(1000);
+            }
         } catch (InterruptedException ex) {
             Logger.getLogger(Guardia.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     public void moverG(Matriz matriz, Guardia g) {
