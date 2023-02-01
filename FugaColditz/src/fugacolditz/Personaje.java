@@ -71,7 +71,7 @@ public class Personaje {
             else{
                 System.out.println("Has fallado");
             }
-        }else if (tabla.tablero[posicion.x-1][posicion.y].equals("A")){
+        }else if (tabla.tablero[posicion.x+1][posicion.y].equals("A")){
 
             if (recogerAlicates(posicion.x+1, posicion.y, tabla)) {
                 tabla.tablero[posicion.x][posicion.y] = "X";
@@ -81,7 +81,7 @@ public class Personaje {
             else{
                 System.out.println("Has fallado");
             }
-        }else if (tabla.tablero[posicion.x-1][posicion.y].equals("U")){
+        }else if (tabla.tablero[posicion.x+1][posicion.y].equals("U")){
 
             if (recogerUniforme(posicion.x+1, posicion.y, tabla)) {
                 tabla.tablero[posicion.x][posicion.y] = "X";
