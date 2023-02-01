@@ -61,90 +61,165 @@ public class Personaje {
     }
 
     private void movDown(Matriz tabla) {
-        if (tabla.tablero[posicion.x + 1][posicion.y].equals("P") ||
-                tabla.tablero[posicion.x + 1][posicion.y].equals("A") ||
-                tabla.tablero[posicion.x + 1][posicion.y].equals("U")) {
-            if (recogerHerramienta(posicion.x + 1, posicion.y, tabla)) {
+        if (tabla.tablero[posicion.x+1][posicion.y].equals("P")){
+
+            if (recogerPasaporte(posicion.x+1, posicion.y, tabla)) {
                 tabla.tablero[posicion.x][posicion.y] = "X";
-                tabla.tablero[posicion.x + 1][posicion.y] = "O";
-                this.posicion = new Posicion(posicion.x + 1, posicion.y);
-            }else{
+                tabla.tablero[posicion.x+1][posicion.y] = "O";
+                this.posicion = new Posicion(posicion.x+1, posicion.y);
+            }
+            else{
                 System.out.println("Has fallado");
             }
-        } else if (tabla.tablero[posicion.x + 1][posicion.y].equals("X")) {
+        }else if (tabla.tablero[posicion.x-1][posicion.y].equals("A")){
+
+            if (recogerAlicates(posicion.x+1, posicion.y, tabla)) {
+                tabla.tablero[posicion.x][posicion.y] = "X";
+                tabla.tablero[posicion.x+1][posicion.y] = "O";
+                this.posicion = new Posicion(posicion.x+1, posicion.y);
+            }
+            else{
+                System.out.println("Has fallado");
+            }
+        }else if (tabla.tablero[posicion.x-1][posicion.y].equals("U")){
+
+            if (recogerUniforme(posicion.x+1, posicion.y, tabla)) {
+                tabla.tablero[posicion.x][posicion.y] = "X";
+                tabla.tablero[posicion.x+1][posicion.y] = "O";
+                this.posicion = new Posicion(posicion.x+1, posicion.y);
+            }
+            else{
+                System.out.println("Has fallado");
+            }
+        }else if (tabla.tablero[posicion.x+1][posicion.y].equals("X")) {
             tabla.tablero[posicion.x][posicion.y] = "X";
-            tabla.tablero[posicion.x + 1][posicion.y] = "O";
-            this.posicion = new Posicion(posicion.x + 1, posicion.y);
-        } else if (tabla.tablero[posicion.x + 1][posicion.y].equals("G")) {
+            tabla.tablero[posicion.x+1][posicion.y] = "O";
+            this.posicion = new Posicion(posicion.x+1, posicion.y);
+        } else if (tabla.tablero[posicion.x+1][posicion.y].equals("G")) {
             tabla.tablero[posicion.x][posicion.y] = "X";
-            tabla.tablero[posicion.x + 1][posicion.y] = "O";
+            tabla.tablero[posicion.x+1][posicion.y] = "O";
+            this.posicion = new Posicion(posicion.x+1, posicion.y);
             tabla.perder = true;
         }
     }
 
     private void movUp(Matriz tabla) {
-        if (tabla.tablero[posicion.x - 1][posicion.y].equals("P") ||
-                tabla.tablero[posicion.x - 1][posicion.y].equals("A") ||
-                tabla.tablero[posicion.x - 1][posicion.y].equals("U")) {
-            if (recogerHerramienta(posicion.x - 1, posicion.y, tabla)) {
+        if (tabla.tablero[posicion.x-1][posicion.y].equals("P")){
+
+            if (recogerPasaporte(posicion.x-1, posicion.y, tabla)) {
                 tabla.tablero[posicion.x][posicion.y] = "X";
-                tabla.tablero[posicion.x - 1][posicion.y] = "O";
-                this.posicion = new Posicion(posicion.x - 1, posicion.y);
-            }else{
+                tabla.tablero[posicion.x-1][posicion.y] = "O";
+                this.posicion = new Posicion(posicion.x-1, posicion.y);
+            }
+            else{
                 System.out.println("Has fallado");
             }
+        }else if (tabla.tablero[posicion.x-1][posicion.y].equals("A")){
 
-        } else if (tabla.tablero[posicion.x - 1][posicion.y].equals("X")) {
+            if (recogerAlicates(posicion.x-1, posicion.y, tabla)) {
+                tabla.tablero[posicion.x][posicion.y] = "X";
+                tabla.tablero[posicion.x-1][posicion.y] = "O";
+                this.posicion = new Posicion(posicion.x-1, posicion.y);
+            }
+            else{
+                System.out.println("Has fallado");
+            }
+        }else if (tabla.tablero[posicion.x-1][posicion.y].equals("U")){
+
+            if (recogerUniforme(posicion.x-1, posicion.y, tabla)) {
+                tabla.tablero[posicion.x][posicion.y] = "X";
+                tabla.tablero[posicion.x-1][posicion.y] = "O";
+                this.posicion = new Posicion(posicion.x-1, posicion.y);
+            }
+            else{
+                System.out.println("Has fallado");
+            }
+        }else if (tabla.tablero[posicion.x-1][posicion.y].equals("X")) {
             tabla.tablero[posicion.x][posicion.y] = "X";
-            tabla.tablero[posicion.x - 1][posicion.y] = "O";
-            this.posicion = new Posicion(posicion.x - 1, posicion.y);
-        } else if (tabla.tablero[posicion.x - 1][posicion.y].equals("G")) {
+            tabla.tablero[posicion.x-1][posicion.y] = "O";
+            this.posicion = new Posicion(posicion.x-1, posicion.y);
+        } else if (tabla.tablero[posicion.x-1][posicion.y].equals("G")) {
             tabla.tablero[posicion.x][posicion.y] = "X";
-            tabla.tablero[posicion.x - 1][posicion.y] = "O";
+            tabla.tablero[posicion.x-1][posicion.y] = "O";
+            this.posicion = new Posicion(posicion.x-1, posicion.y);
             tabla.perder = true;
         }
     }
 
     private void moveLeft(Matriz tabla) {
-        if (tabla.tablero[posicion.x][posicion.y - 1].equals("P") ||
-                tabla.tablero[posicion.x][posicion.y - 1].equals("A") ||
-                tabla.tablero[posicion.x][posicion.y - 1].equals("U")) {
+        if (tabla.tablero[posicion.x][posicion.y-1].equals("P")){
 
-            if (recogerHerramienta(posicion.x, posicion.y - 1, tabla)) {
+            if (recogerPasaporte(posicion.x, posicion.y-1, tabla)) {
                 tabla.tablero[posicion.x][posicion.y] = "X";
-                tabla.tablero[posicion.x][posicion.y - 1] = "O";
-                this.posicion = new Posicion(posicion.x, posicion.y - 1);
-            }else{
+                tabla.tablero[posicion.x][posicion.y-1] = "O";
+                this.posicion = new Posicion(posicion.x, posicion.y-1);
+            }
+            else{
                 System.out.println("Has fallado");
             }
-        } else if (tabla.tablero[posicion.x][posicion.y - 1].equals("X")) { /// x=1 y=0
+        }else if (tabla.tablero[posicion.x][posicion.y-1].equals("A")){
+            
+            if (recogerAlicates(posicion.x, posicion.y-1, tabla)) {
+                tabla.tablero[posicion.x][posicion.y] = "X";
+                tabla.tablero[posicion.x][posicion.y-1] = "O";
+                this.posicion = new Posicion(posicion.x, posicion.y-1);
+            }
+            else{
+                System.out.println("Has fallado");
+            }
+        }else if (tabla.tablero[posicion.x][posicion.y-1].equals("U")){
+
+            if (recogerUniforme(posicion.x, posicion.y-1, tabla)) {
+                tabla.tablero[posicion.x][posicion.y] = "X";
+                tabla.tablero[posicion.x][posicion.y-1] = "O";
+                this.posicion = new Posicion(posicion.x, posicion.y-1);
+            }
+            else{
+                System.out.println("Has fallado");
+            }
+        }else if (tabla.tablero[posicion.x][posicion.y - 1].equals("X")) {
             tabla.tablero[posicion.x][posicion.y] = "X";
             tabla.tablero[posicion.x][posicion.y - 1] = "O";
             this.posicion = new Posicion(posicion.x, posicion.y - 1);
-
-        } else if (tabla.tablero[posicion.x][posicion.y - 1].equals("G")) {
+        } else if (tabla.tablero[posicion.x][posicion.y + 1].equals("G")) {
             tabla.tablero[posicion.x][posicion.y] = "X";
             tabla.tablero[posicion.x][posicion.y - 1] = "O";
             this.posicion = new Posicion(posicion.x, posicion.y - 1);
             tabla.perder = true;
-
         }
 
     }
 
     private void movRight(Matriz tabla) {
-        if (tabla.tablero[posicion.x][posicion.y + 1].equals("P") ||
-                tabla.tablero[posicion.x][posicion.y + 1].equals("A") ||
-                tabla.tablero[posicion.x][posicion.y + 1].equals("U")) {
+        if (tabla.tablero[posicion.x][posicion.y + 1].equals("P")){
 
-            if (recogerHerramienta(posicion.x, posicion.y + 1, tabla)) {
+            if (recogerPasaporte(posicion.x, posicion.y + 1, tabla)) {
+                tabla.tablero[posicion.x][posicion.y] = "X";
+                tabla.tablero[posicion.x][posicion.y + 1] = "O";
+                this.posicion = new Posicion(posicion.x, posicion.y + 1);
+            }
+            else{
+                System.out.println("Has fallado");
+            }
+        }else if(tabla.tablero[posicion.x][posicion.y + 1].equals("A")){
+            
+            if(recogerAlicates(posicion.x, posicion.y + 1, tabla)){
+                tabla.tablero[posicion.x][posicion.y] = "X";
+                tabla.tablero[posicion.x][posicion.y + 1] = "O";
+                this.posicion = new Posicion(posicion.x, posicion.y + 1);
+                }else{
+                System.out.println("Has fallado");
+            }
+        }else if(tabla.tablero[posicion.x][posicion.y + 1].equals("U")){
+            
+            if (recogerUniforme(posicion.x, posicion.y + 1, tabla)) {
                 tabla.tablero[posicion.x][posicion.y] = "X";
                 tabla.tablero[posicion.x][posicion.y + 1] = "O";
                 this.posicion = new Posicion(posicion.x, posicion.y + 1);
             }else{
                 System.out.println("Has fallado");
             }
-        } else if (tabla.tablero[posicion.x][posicion.y + 1].equals("X")) {
+        }else if (tabla.tablero[posicion.x][posicion.y + 1].equals("X")) {
             tabla.tablero[posicion.x][posicion.y] = "X";
             tabla.tablero[posicion.x][posicion.y + 1] = "O";
             this.posicion = new Posicion(posicion.x, posicion.y + 1);
@@ -157,7 +232,7 @@ public class Personaje {
     }
 
 
-    public boolean recogerHerramienta(int x, int y, Matriz t) {
+    public boolean recogerPasaporte(int x, int y, Matriz t) {
         try {
             Scanner sc = new Scanner(System.in);
             int opcion;
@@ -202,6 +277,43 @@ public class Personaje {
                         this.pasaporte = true;
 
                         break;
+                }
+                return true;
+            }
+
+            
+
+        } catch (InputMismatchException e) {
+            System.out.println("Un numero del uno al 3 porfavor...");
+            recogerPasaporte(x, y, t);
+        }
+        
+        
+
+        return false;
+    }
+    
+    public boolean recogerAlicates(int x, int y, Matriz t){
+        try {
+            Scanner sc = new Scanner(System.in);
+            int opcion;
+            System.out.println("Para coger esta herramienta elige cara o cruz(cara=1,cruz=2):");
+            opcion = sc.nextInt();
+            boolean ganar = false;
+            int aleatorio = (int) Math.ceil(Math.random()+1);
+
+            if (aleatorio == opcion) { //ganador
+                ganar = true;
+                System.out.println("Has ganado!!!!");
+                System.out.println("te quedas con la herramienta");
+            }else{ //perdedor
+                System.out.println("Has perdido!!!");
+                System.out.println("Vuelve a intentarlo");
+            }
+
+
+            if (ganar) {
+                switch (t.tablero[x][y]) {
 
                     case "A":
                         for (Posicion p : t.herramientas.get(1).posicionHerramienta) {
@@ -210,26 +322,69 @@ public class Personaje {
                         }
 
                         this.alicates = true;
+
                         break;
+                }
+                return true;
+            }
+
+            
+
+        } catch (InputMismatchException e) {
+            System.out.println("Un numero del uno al dos porfavor...");
+            recogerAlicates(x, y, t);
+        }
+        
+        
+
+        return false;
+    }
+    public boolean recogerUniforme(int x, int y, Matriz t){
+        try {
+            Scanner sc = new Scanner(System.in);
+            int opcion;
+            System.out.println("Para coger esta herramienta elige pares o nones(nones=1,pares=2):");
+            opcion = sc.nextInt();
+            boolean ganar = false;
+            int aleatorio = (int) Math.ceil(Math.random()+1);
+
+            if (aleatorio == opcion) { //ganador
+                ganar = true;
+                System.out.println("Has ganado!!!!");
+                System.out.println("te quedas con la herramienta");
+            }else{ //perdedor
+                System.out.println("Has perdido!!!");
+                System.out.println("Vuelve a intentarlo");
+            }
+
+
+            if (ganar) {
+                switch (t.tablero[x][y]) {
 
                     case "U":
                         for (Posicion p : t.herramientas.get(2).posicionHerramienta) {
 
                             t.tablero[p.x][p.y] = "X";
                         }
+
                         this.uniforme = true;
+
                         break;
                 }
                 return true;
             }
 
+            
 
         } catch (InputMismatchException e) {
-            System.out.println("Un numero del uno al 3 porfavor...");
-            recogerHerramienta(x, y, t);
+            System.out.println("Un numero del uno al dos porfavor...");
+            recogerUniforme(x, y, t);
         }
+        
+        
 
         return false;
     }
+    }
 
-}
+
