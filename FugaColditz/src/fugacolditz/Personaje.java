@@ -300,7 +300,7 @@ public class Personaje {
             System.out.println("Para coger esta herramienta elige cara o cruz(cara=1,cruz=2):");
             opcion = sc.nextInt();
             boolean ganar = false;
-            int aleatorio = (int) Math.ceil(Math.random()+1);
+            int aleatorio = (int) (Math.random() * 2 + 1);
 
             if (aleatorio == opcion) { //ganador
                 ganar = true;
@@ -346,7 +346,7 @@ public class Personaje {
             System.out.println("Para coger esta herramienta elige pares o nones(nones=1,pares=2):");
             opcion = sc.nextInt();
             boolean ganar = false;
-            int aleatorio = (int) Math.ceil(Math.random()+1);
+            int aleatorio = (int) (Math.random() * 2 + 1);
 
             if (aleatorio == opcion) { //ganador
                 ganar = true;
