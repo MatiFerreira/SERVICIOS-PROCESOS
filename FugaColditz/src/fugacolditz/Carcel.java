@@ -58,11 +58,7 @@ public class Carcel {
                 System.out.println("HAS GANADO!!!!");
                 System.exit(0);
             }
-            if ((m.personaje1.posicion.x == guardia1.x) && (m.personaje1.posicion.y == guardia1.y)
-                    || (m.personaje1.posicion.x == guardia2.x) && (m.personaje1.posicion.y == guardia2.y)
-                    || (m.personaje1.posicion.x == guardia3.x) && (m.personaje1.posicion.y == guardia3.y)) {
-                m.perder = true;
-            }
+            
         } while ((!m.EndGame()) && (m.personaje1.contador != 30));
         System.out.println("END GAME!");
         System.exit(0);

@@ -11,11 +11,11 @@ public class Guardia extends Thread {
     Semaphore semaforog;
     Matriz m = new Matriz();
 
-    public Guardia(int x, int y,Semaphore semaf,Matriz matriz) {
+    public Guardia(int x, int y, Semaphore semaf, Matriz matriz) {
         this.x = x;
         this.y = y;
         this.semaforog = semaf;
-        this.m=matriz;
+        this.m = matriz;
     }
 
     @Override
@@ -48,6 +48,10 @@ public class Guardia extends Thread {
                         m.tablero[this.x][this.y] = "X";
                         this.x = this.x - 1;
                     }
+                    if (m.tablero[this.x - 1][this.y].equalsIgnoreCase("O")) {
+                        System.out.println("Te ha pillado un guardia!");
+                        m.perder = true;
+                    }
                     break;
                 case 2:
                     //abajo
@@ -60,6 +64,10 @@ public class Guardia extends Thread {
                         this.x = this.x + 1;
                         break;
                     }
+                    if (m.tablero[this.x + 1][this.y].equalsIgnoreCase("O")) {
+                        System.out.println("Te ha pillado un guardia!");
+                        m.perder = true;
+                    }
                 case 3:
                     //izquierda
                     if ((m.tablero[this.x][this.y - 1].equalsIgnoreCase("U")) || (m.tablero[this.x][this.y - 1].equalsIgnoreCase("A"))
@@ -71,6 +79,11 @@ public class Guardia extends Thread {
                         this.y = this.y - 1;
                         break;
                     }
+                    if (m.tablero[this.x][this.y - 1].equalsIgnoreCase("O")) {
+                        System.out.println("Te ha pillado un guardia!");
+                        m.perder = true;
+
+                    }
                 case 4:
                     //derecha
                     if ((m.tablero[this.x][this.y + 1].equalsIgnoreCase("U")) || (m.tablero[this.x][this.y + 1].equalsIgnoreCase("A"))
@@ -80,6 +93,11 @@ public class Guardia extends Thread {
                         m.tablero[this.x][this.y + 1] = "G";
                         m.tablero[this.x][this.y] = "X";
                         this.y = this.y + 1;
+                    }
+                    if (m.tablero[this.x][this.y + 1].equalsIgnoreCase("O")) {
+                        System.out.println("Te ha pillado un guardia!");
+                        m.perder = true;
+
                     }
                     break;
             }
