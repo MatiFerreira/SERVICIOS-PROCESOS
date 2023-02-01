@@ -11,10 +11,11 @@ public class Guardia extends Thread {
     Semaphore semaforog;
     Matriz m = new Matriz();
 
-    public Guardia(int x, int y) {
+    public Guardia(int x, int y,Semaphore semaf,Matriz matriz) {
         this.x = x;
         this.y = y;
-        this.semaforog = new Semaphore(1);
+        this.semaforog = semaf;
+        this.m=matriz;
     }
 
     @Override
@@ -22,8 +23,8 @@ public class Guardia extends Thread {
         try {
             while (!m.perder) {
                 //System.out.println("ola");
-                this.moverG(m, this);
-                this.semaforog.acquire(1);
+                semaforog.acquire();
+                moverG();
                 semaforog.release();
                 sleep(1000);
             }
@@ -33,57 +34,57 @@ public class Guardia extends Thread {
 
     }
 
-    public void moverG(Matriz matriz, Guardia g) {
+    public void moverG() {
         try {
             int ale = (int) ((Math.random() * 4 + 1));
             switch (ale) {
                 case 1:
                     //arriba
-                    if ((matriz.tablero[g.x - 1][g.y].equalsIgnoreCase("U")) || (matriz.tablero[g.x - 1][g.y].equalsIgnoreCase("A"))
-                            || (matriz.tablero[g.x - 1][g.y].equalsIgnoreCase("P")) || (matriz.tablero[g.x - 1][g.y].equalsIgnoreCase("G"))) {
-                        moverG(matriz, g);
+                    if ((m.tablero[this.x - 1][this.y].equalsIgnoreCase("U")) || (m.tablero[this.x - 1][this.y].equalsIgnoreCase("A"))
+                            || (m.tablero[this.x - 1][this.y].equalsIgnoreCase("P")) || (m.tablero[this.x - 1][this.y].equalsIgnoreCase("G"))) {
+                        moverG();
                     } else {
-                        matriz.tablero[g.x - 1][g.y] = "G";
-                        matriz.tablero[g.x][g.y] = "X";
-                        g.x = g.x - 1;
+                        m.tablero[this.x - 1][this.y] = "G";
+                        m.tablero[this.x][this.y] = "X";
+                        this.x = this.x - 1;
                     }
                     break;
                 case 2:
                     //abajo
-                    if ((matriz.tablero[g.x + 1][g.y].equalsIgnoreCase("U")) || (matriz.tablero[g.x + 1][g.y].equalsIgnoreCase("A"))
-                            || (matriz.tablero[g.x + 1][g.y].equalsIgnoreCase("P")) || (matriz.tablero[g.x + 1][g.y].equalsIgnoreCase("G"))) {
-                        moverG(matriz, g);
+                    if ((m.tablero[this.x + 1][this.y].equalsIgnoreCase("U")) || (m.tablero[this.x + 1][this.y].equalsIgnoreCase("A"))
+                            || (m.tablero[this.x + 1][this.y].equalsIgnoreCase("P")) || (m.tablero[this.x + 1][this.y].equalsIgnoreCase("G"))) {
+                        moverG();
                     } else {
-                        matriz.tablero[g.x + 1][g.y] = "G";
-                        matriz.tablero[g.x][g.y] = "X";
-                        g.x = g.x + 1;
+                        m.tablero[this.x + 1][this.y] = "G";
+                        m.tablero[this.x][this.y] = "X";
+                        this.x = this.x + 1;
                         break;
                     }
                 case 3:
                     //izquierda
-                    if ((matriz.tablero[g.x][g.y - 1].equalsIgnoreCase("U")) || (matriz.tablero[g.x][g.y - 1].equalsIgnoreCase("A"))
-                            || (matriz.tablero[g.x][g.y - 1].equalsIgnoreCase("P")) || (matriz.tablero[g.x][g.y - 1].equalsIgnoreCase("G"))) {
-                        moverG(matriz, g);
+                    if ((m.tablero[this.x][this.y - 1].equalsIgnoreCase("U")) || (m.tablero[this.x][this.y - 1].equalsIgnoreCase("A"))
+                            || (m.tablero[this.x][this.y - 1].equalsIgnoreCase("P")) || (m.tablero[this.x][this.y - 1].equalsIgnoreCase("G"))) {
+                        moverG();
                     } else {
-                        matriz.tablero[g.x][g.y - 1] = "G";
-                        matriz.tablero[g.x][g.y] = "X";
-                        g.y = g.y - 1;
+                        m.tablero[this.x][this.y - 1] = "G";
+                        m.tablero[this.x][this.y] = "X";
+                        this.y = this.y - 1;
                         break;
                     }
                 case 4:
                     //derecha
-                    if ((matriz.tablero[g.x][g.y + 1].equalsIgnoreCase("U")) || (matriz.tablero[g.x][g.y + 1].equalsIgnoreCase("A"))
-                            || (matriz.tablero[g.x][g.y + 1].equalsIgnoreCase("P")) || (matriz.tablero[g.x][g.y + 1].equalsIgnoreCase("G"))) {
-                        moverG(matriz, g);
+                    if ((m.tablero[this.x][this.y + 1].equalsIgnoreCase("U")) || (m.tablero[this.x][this.y + 1].equalsIgnoreCase("A"))
+                            || (m.tablero[this.x][this.y + 1].equalsIgnoreCase("P")) || (m.tablero[this.x][this.y + 1].equalsIgnoreCase("G"))) {
+                        moverG();
                     } else {
-                        matriz.tablero[g.x][g.y + 1] = "G";
-                        matriz.tablero[g.x][g.y] = "X";
-                        g.y = g.y + 1;
+                        m.tablero[this.x][this.y + 1] = "G";
+                        m.tablero[this.x][this.y] = "X";
+                        this.y = this.y + 1;
                     }
                     break;
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            moverG(matriz, g);
+            moverG();
         }
     }
 }

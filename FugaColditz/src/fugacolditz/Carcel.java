@@ -1,16 +1,19 @@
 package fugacolditz;
 
 import java.util.Scanner;
+import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Carcel {
 
     public static void main(String[] args) {
+        Semaphore guardiaSemaf = new Semaphore(1,true);
+        Matriz m = new Matriz();
         //creacion de 3 guardias
-        Guardia guardia1 = new Guardia(0, 0);
-        Guardia guardia2 = new Guardia(-1, -1);
-        Guardia guardia3 = new Guardia(-1, -1);
+        Guardia guardia1 = new Guardia(0, 0,guardiaSemaf,m);
+        Guardia guardia2 = new Guardia(-1, -1,guardiaSemaf,m);
+        Guardia guardia3 = new Guardia(-1, -1,guardiaSemaf,m);
         System.out.println("Elige el nivel de dificultad(facil, medio, dificil):");
         System.out.println("si lo escribes mal se te asigna por defecto el modo dificl asique atento a lo que escribes :)");
         Scanner sc = new Scanner(System.in);
@@ -21,46 +24,46 @@ public class Carcel {
 //        Matriz tablero = new Matriz();
 
         Herramienta pasaporte = new Herramienta("Pasaporte");
-        guardia1.m.AniadirHerramienta(pasaporte);
+        m.AniadirHerramienta(pasaporte);
         Herramienta alicates = new Herramienta("Alicates");
-        guardia1.m.AniadirHerramienta(alicates);
+        m.AniadirHerramienta(alicates);
         Herramienta uniforme = new Herramienta("Uniforme");
-        guardia1.m.AniadirHerramienta(uniforme);
+        m.AniadirHerramienta(uniforme);
         if (opcion.equalsIgnoreCase("facil")) {
-            guardia1.m.aniadirGuardia(guardia1);
+            m.aniadirGuardia(guardia1);
             guardia1.start();
         } else if (opcion.equalsIgnoreCase("medio")) {
-            guardia1.m.aniadirGuardia(guardia1);
-            guardia1.m.aniadirGuardia(guardia2);
+            m.aniadirGuardia(guardia1);
+            m.aniadirGuardia(guardia2);
             guardia1.start();
             guardia2.start();
         } else {
-            guardia1.m.aniadirGuardia(guardia1);
-            guardia1.m.aniadirGuardia(guardia2);
-            guardia1.m.aniadirGuardia(guardia3);
+            m.aniadirGuardia(guardia1);
+            m.aniadirGuardia(guardia2);
+            m.aniadirGuardia(guardia3);
             guardia1.start();
             guardia2.start();
             guardia3.start();
         }
-        guardia1.m.AniadirPersonaje();
-        System.out.println(guardia1.m.imprimirTablero());
+        m.AniadirPersonaje();
+        System.out.println(m.imprimirTablero());
         do {
 
             System.out.println("A que posicion quieres moverte?(W,A,S,D): ");
             String mov = sc.next();
-            guardia1.m.personaje1.mover(mov, guardia1.m);
+            m.personaje1.mover(mov, m);
 
-            System.out.println(guardia1.m.imprimirTablero());
-            if (guardia1.m.personaje1.alicates && guardia1.m.personaje1.pasaporte && guardia1.m.personaje1.uniforme) {
+            System.out.println(m.imprimirTablero());
+            if (m.personaje1.alicates && m.personaje1.pasaporte && m.personaje1.uniforme) {
                 System.out.println("HAS GANADO!!!!");
                 System.exit(0);
             }
-            if ((guardia1.m.personaje1.posicion.x == guardia1.x) && (guardia1.m.personaje1.posicion.y == guardia1.y)
-                    || (guardia1.m.personaje1.posicion.x == guardia2.x) && (guardia1.m.personaje1.posicion.y == guardia2.y)
-                    || (guardia1.m.personaje1.posicion.x == guardia3.x) && (guardia1.m.personaje1.posicion.y == guardia3.y)) {
-                guardia1.m.perder = true;
+            if ((m.personaje1.posicion.x == guardia1.x) && (m.personaje1.posicion.y == guardia1.y)
+                    || (m.personaje1.posicion.x == guardia2.x) && (m.personaje1.posicion.y == guardia2.y)
+                    || (m.personaje1.posicion.x == guardia3.x) && (m.personaje1.posicion.y == guardia3.y)) {
+                m.perder = true;
             }
-        } while ((!guardia1.m.EndGame()) && (guardia1.m.personaje1.contador != 30));
+        } while ((!m.EndGame()) && (m.personaje1.contador != 30));
         System.out.println("END GAME!");
         System.exit(0);
     }
