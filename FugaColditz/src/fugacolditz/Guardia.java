@@ -44,13 +44,20 @@ public class Guardia extends Thread {
                             || (m.tablero[this.x - 1][this.y].equalsIgnoreCase("P")) || (m.tablero[this.x - 1][this.y].equalsIgnoreCase("G"))) {
                         moverG();
                     } else {
-                        m.tablero[this.x - 1][this.y] = "G";
-                        m.tablero[this.x][this.y] = "X";
-                        this.x = this.x - 1;
                         if (m.tablero[this.x - 1][this.y].equalsIgnoreCase("O")) {
-                            System.out.println("Te ha pillado un guardia!");
+                            m.tablero[this.x - 1][this.y] = "G";
+                            m.tablero[this.x][this.y] = "X";
+                            this.x = this.x - 1;
+                            System.out.println("PERDISTE");
+                            System.out.println("TE HA PILLADO UN GUARDIA");
                             m.perder = true;
+                            System.exit(0);
+                        } else {
+                            m.tablero[this.x - 1][this.y] = "G";
+                            m.tablero[this.x][this.y] = "X";
+                            this.x = this.x - 1;
                         }
+
                     }
 
                     break;
@@ -60,13 +67,21 @@ public class Guardia extends Thread {
                             || (m.tablero[this.x + 1][this.y].equalsIgnoreCase("P")) || (m.tablero[this.x + 1][this.y].equalsIgnoreCase("G"))) {
                         moverG();
                     } else {
-                        m.tablero[this.x + 1][this.y] = "G";
-                        m.tablero[this.x][this.y] = "X";
-                        this.x = this.x + 1;
                         if (m.tablero[this.x + 1][this.y].equalsIgnoreCase("O")) {
-                            System.out.println("Te ha pillado un guardia!");
+                            m.tablero[this.x + 1][this.y] = "G";
+                            m.tablero[this.x][this.y] = "X";
+                            this.x = this.x + 1;
+                            System.out.println("PERDISTE");
+                            System.out.println("TE HA PILLADO UN GUARDIA");
+
                             m.perder = true;
+                            System.exit(0);
+                        } else {
+                            m.tablero[this.x + 1][this.y] = "G";
+                            m.tablero[this.x][this.y] = "X";
+                            this.x = this.x + 1;
                         }
+
                         break;
                     }
 
@@ -76,13 +91,21 @@ public class Guardia extends Thread {
                             || (m.tablero[this.x][this.y - 1].equalsIgnoreCase("P")) || (m.tablero[this.x][this.y - 1].equalsIgnoreCase("G"))) {
                         moverG();
                     } else {
-                        m.tablero[this.x][this.y - 1] = "G";
-                        m.tablero[this.x][this.y] = "X";
-                        this.y = this.y - 1;
                         if (m.tablero[this.x][this.y - 1].equalsIgnoreCase("O")) {
-                            System.out.println("Te ha pillado un guardia!");
+                            m.tablero[this.x][this.y - 1] = "G";
+                            m.tablero[this.x][this.y] = "X";
+                            this.y = this.y - 1;
+                            System.out.println("PERDISTE");
+                            System.out.println("TE HA PILLADO UN GUARDIA");
+
                             m.perder = true;
+                            System.exit(0);
+                        } else {
+                            m.tablero[this.x][this.y - 1] = "G";
+                            m.tablero[this.x][this.y] = "X";
+                            this.y = this.y - 1;
                         }
+
                         break;
                     }
 
@@ -92,13 +115,20 @@ public class Guardia extends Thread {
                             || (m.tablero[this.x][this.y + 1].equalsIgnoreCase("P")) || (m.tablero[this.x][this.y + 1].equalsIgnoreCase("G"))) {
                         moverG();
                     } else {
-                        m.tablero[this.x][this.y + 1] = "G";
-                        m.tablero[this.x][this.y] = "X";
-                        this.y = this.y + 1;
                         if (m.tablero[this.x][this.y + 1].equalsIgnoreCase("O")) {
-                            System.out.println("Te ha pillado un guardia!");
+                            m.tablero[this.x][this.y + 1] = "G";
+                            m.tablero[this.x][this.y] = "X";
+                            this.y = this.y + 1;
+                            System.out.println("PERDISTE");
+                            System.out.println("TE HA PILLADO UN GUARDIA");
                             m.perder = true;
+                            System.exit(0);
+                        } else {
+                            m.tablero[this.x][this.y + 1] = "G";
+                            m.tablero[this.x][this.y] = "X";
+                            this.y = this.y + 1;
                         }
+
                     }
 
                     break;
